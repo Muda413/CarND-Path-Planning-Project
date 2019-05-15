@@ -15,13 +15,12 @@ using std::string;
 using std::vector;
 
 
-bool car_here(int check_lane, double d_fre, double d_diff) {
-  if (abs((2 + 4 * check_lane) - d_fre) < d_diff) {
+bool car_here(int check_lane, double d_fre, double d_diff){
+  if(abs((2+4*check_lane)-d_fre) < d_diff){
     return true;
   }
   return false;
 }
-
 
 int main() {
   uWS::Hub h;
@@ -349,6 +348,7 @@ int main() {
 
   }); // end h.onMessage
 
+
   h.onConnection([&h](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
     std::cout << "Connected!!!" << std::endl;
   });
@@ -358,7 +358,6 @@ int main() {
     ws.close();
     std::cout << "Disconnected" << std::endl;
   });
-
   int port = 4567;
   if (h.listen(port)) {
     std::cout << "Listening to port " << port << std::endl;
