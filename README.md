@@ -15,7 +15,7 @@ However, important steps we implemented our code based on the project Q&A from t
 - Using combination of spline and frenet coordinates to estimate the new trajectory
 - Avoiding jerk while maneuvering and completing a full lap with no collisions
 
-We implement these above, we used the sensor fusion data of the main car provided and other cars around us to kick start the driving. We defined our safety strategy for navigaing to the left or right. We looped through the sensor fusion data to get the current car's "s" position. Subsequently, we checked our safety strategy to ensure the distance from other cars are safe.
+To implement these above, we used the sensor fusion data of the main car provided and other cars around us to kick start the driving. We defined our safety strategy for navigaing to the left or right. We looped through the sensor fusion data to get the current car's "s" position. Subsequently, we checked our safety strategy to ensure the distance from other cars are safe.
 
 We use the spline function to estimate the end of the trajectory and transform back to the car's latest cartesian coordinate to follow - "next_x_vals" and "next_y_vals"  
 
