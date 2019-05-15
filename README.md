@@ -1,6 +1,34 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
-   
+
+### Overview
+This project entailed applying the principles learnt from behavioral and trajectory planning module of SDCND to allow the car navigate and maneuver safely to either the right lane or left lane without no jerks being experienced. and also drive within the speed limit.
+
+
+### Key Steps
+To control our car our the track for one lap, we made certain assumptions such as:
+ - Control strategy is void of Noise
+ - Constant speed limit of 50 m/h
+
+However, important steps we implemented our code based on the project Q&A from the Path Planning module were:
+- Using sensor fusion data to estimate the position of the vehicles around or in front of the car to prevent collisions
+- Using combination of spline and frenet coordinates to estimate the new trajectory
+- Avoiding jerk while maneuvering and completing a full lap with no collisions
+
+We implement these above, we used the sensor fusion data of the main car provided and other cars around us to kick start the driving. We defined our safety strategy for navigaing to the left or right. We looped through the sensor fusion data to get the current car's "s" position. Subsequently, we checked our safety strategy to ensure the distance from other cars are safe.
+
+We use the spline function to estimate the end of the trajectory and transform back to the car's latest cartesian coordinate to follow - "next_x_vals" and "next_y_vals"  
+
+Finally to account for jerk, we used the inputs from the project Q&A to adjust the reference velocity when the car is above or below a certain threshold with 0.224 mph
+
+
+### Potential Improvements
+We were able to successfully navigate the car based on the project requirements. However areas we recommend for improvements are:
+- Implementing our own control strategy instead of using the perfect controller used for this project
+- Obtaining the sensor fusion data of cars behind us as this would help us determine how close they are from us when navigating to the right or left lane
+- Incorporating finite state machine techniques which are computationally less expensive and helps in defining states and transitions we expect on the road and by the other cars before changing lanes.
+
+
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).  
 
@@ -43,13 +71,13 @@ Here is the data provided from the Simulator to the C++ Program
 #### Previous path data given to the Planner
 
 //Note: Return the previous list but with processed points removed, can be a nice tool to show how far along
-the path has processed since last time. 
+the path has processed since last time.
 
 ["previous_path_x"] The previous list of x points previously given to the simulator
 
 ["previous_path_y"] The previous list of y points previously given to the simulator
 
-#### Previous path's end s and d values 
+#### Previous path's end s and d values
 
 ["end_path_s"] The previous list's last point's frenet s value
 
@@ -57,7 +85,7 @@ the path has processed since last time.
 
 #### Sensor Fusion Data, a list of all other car's attributes on the same side of the road. (No Noise)
 
-["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates. 
+["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates.
 
 ## Details
 
@@ -87,7 +115,7 @@ A really helpful resource for doing this project and creating smooth trajectorie
   * Run either `install-mac.sh` or `install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -142,4 +170,3 @@ still be compilable with cmake and make./
 
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
